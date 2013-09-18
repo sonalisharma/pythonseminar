@@ -5,7 +5,7 @@ import re
 
 def calculate(userinput,return_float=False):
 	"""
-	This methos is used to read the user input and provide and answer. The answer is computed dircetly
+	This method is used to read the user input and provide and answer. The answer is computed dircetly
 	using eval method if its a numerical expression, if not the wolfram api is used to get the appropriate answer.
 
 	Parameters:
@@ -23,15 +23,15 @@ def calculate(userinput,return_float=False):
 	try:
 		#This is to make sure user does not provide remve, delete or other sys commands in eval
 		#eval is used purely for numeric calculations here.
-		if (bool(re.match('.*[a-zA-Z].*', userinput, re.IGNORECASE))):
+		if (bool(re.match('.*[a-zA-Z].*', str(userinput), re.IGNORECASE))):
 			raise Exception ("Try with wolfram")
 		else:
-			ans  = eval(userinput)
+			ans  = eval(str(userinput))
 			if return_float:
 				ans = float(re.findall(r'\d+', ans))
-			return ans 
+			return "You Asked :%s \n Answer : %s" %(str(userinput),ans) 
 	except Exception:
-		data = urllib2.urlopen('http://api.wolframalpha.com/v2/query?appid=UAGAWR-3X6Y8W777Q&input='+userinput.replace(" ","%20")+'&format=plaintext').read()
+		data = urllib2.urlopen('http://api.wolframalpha.com/v2/query?appid=UAGAWR-3X6Y8W777Q&input='+str(userinput).replace(" ","%20")+'&format=plaintext').read()
         soup = BeautifulSoup.BeautifulSoup(data)
         keys = soup.findAll('plaintext')
         if (keys):
@@ -41,7 +41,10 @@ def calculate(userinput,return_float=False):
         		ans = k.text
         else:
         	ans = "Sorry! No results found, try another question!"
-        return ans
+        if ans == "":
+        	ans = "Sorry! No results found, try another question!"
+        return "You Asked :%s \n Answer : %s" %(str(userinput),ans)
+
 def test_1():
 	assert abs(4.0 - calculate("2**2")) < 0.001
 def test_2():
@@ -59,10 +62,7 @@ if __name__ == '__main__':
 	try:
 		results =  parser.parse_args()
 		ans = calculate(results.s,return_float=True)
-		if ans=="":
-			ans="Sorry! No results found, try another question!"
-		print "You Asked: %s" %results.s
-		print "Answer: %s" %ans
+		print ans
 	except:
-		print "There is an error in your input, check help below"
+		print "Either no response was found or there is an error in your input, check help below"
 		parser.print_help()

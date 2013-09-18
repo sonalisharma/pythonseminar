@@ -1,0 +1,27 @@
+Metadata-Version: 1.0
+Name: CalCalc
+Version: 0.0.0
+Summary: Provides answers to user queries provided on command line
+Home-page: UNKNOWN
+Author: Sonali Sharma
+Author-email: sonalisharma@berkeley.du
+License: UNKNOWN
+Description: ===========
+        CalCalc
+        ===========
+        
+        This is used to provide and ability to the usetrs to pose a query for which
+        this module will prvide a response. Typical usage
+        often looks like this::
+        
+            #!/usr/bin/env python
+        
+            from CalCalc import calculation
+        
+            calculate('34*20')
+        
+        Output
+        =========
+        The output will be a number or a string based on what query you asked
+        
+Platform: UNKNOWN
