@@ -1,4 +1,0 @@
-pythonseminar
-=============
-
-Python Seminar Class
