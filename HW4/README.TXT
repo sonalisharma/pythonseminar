@@ -29,6 +29,10 @@ Note:
 2) trained_classifier.p has been shared on google drive. Make sure you download the file correctly and place it in the
 same folder where classifier.py and 50_categories folder are placed.
 
+If this does not work, you can recrete the model file simply by running all the ipython 
+commands in notebook HW4.ipynb one by one. Make sure in the variable , correct path to 50_categories folder is provided.
+MYDIRECTORY ="/Users/sonali/Documents/Ischool/PythonSeminar/pythonseminar/HW4/50_categories"
+
 3) Now open python on Terminal and call the function as shown below:
 e.g.
 $ python
