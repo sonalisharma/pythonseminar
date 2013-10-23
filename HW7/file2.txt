@@ -1,0 +1,49 @@
+{
+    "body": "re: pystatsmodels e-mail\r\n\r\n\r\nhi everyone,\r\n\r\njust getting started with pandas and i was wondering if someone could\r\nhelp me out.  do pandas.DataMatrix objects support per item comparison\r\noperations?\r\n\r\ni have a two data matrices, and i want to do something like this:\r\n\r\ndiv[div > 0.5 * price] = 0\r\n\r\nthis would work if div and price were numpy.ndarray objects.  any idea\r\nhow i would do something like this with pandas.DataMatrix objects?\r\n\r\nthanks,\r\nandy\r\n", 
+    "labels": [], 
+    "title": "Enable element-wise comparison operations in DataMatrix objects", 
+    "url": "https://api.github.com/repos/pydata/pandas/issues/1", 
+    "labels_url": "https://api.github.com/repos/pydata/pandas/issues/1/labels{/name}", 
+    "created_at": "2010-09-29T00:45:31Z", 
+    "events_url": "https://api.github.com/repos/pydata/pandas/issues/1/events", 
+    "comments_url": "https://api.github.com/repos/pydata/pandas/issues/1/comments", 
+    "html_url": "https://github.com/pydata/pandas/issues/1", 
+    "comments": [
+      {
+        "text": "implemented in git HEAD", 
+        "updated": "1298157227000", 
+        "created": "1298157227000", 
+        "author": "wesm"
+      }
+    ], 
+    "number": 1, 
+    "updated_at": "2014-04-26T21:25:39Z", 
+    "assignee": null, 
+    "state": "closed", 
+    "user": {
+      "following_url": "https://api.github.com/users/wesm/following", 
+      "events_url": "https://api.github.com/users/wesm/events{/privacy}", 
+      "organizations_url": "https://api.github.com/users/wesm/orgs", 
+      "url": "https://api.github.com/users/wesm", 
+      "gists_url": "https://api.github.com/users/wesm/gists{/gist_id}", 
+      "html_url": "https://github.com/wesm", 
+      "subscriptions_url": "https://api.github.com/users/wesm/subscriptions", 
+      "avatar_url": "https://secure.gravatar.com/avatar/2c08a3eed709a9d1a2654cea45aa466f?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png", 
+      "repos_url": "https://api.github.com/users/wesm/repos", 
+      "received_events_url": "https://api.github.com/users/wesm/received_events", 
+      "gravatar_id": "2c08a3eed709a9d1a2654cea45aa466f", 
+      "starred_url": "https://api.github.com/users/wesm/starred{/owner}{/repo}", 
+      "login": "wesm", 
+      "type": "User", 
+      "id": 329591, 
+      "followers_url": "https://api.github.com/users/wesm/followers"
+    }, 
+    "milestone": null, 
+    "closed_at": "2011-02-19T23:13:48Z", 
+    "pull_request": {
+      "diff_url": null, 
+      "html_url": null, 
+      "patch_url": null
+    }, 
+    "id": 337721
+  }
