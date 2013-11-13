@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+<a href="{{ url_for('get_file') }}">Go back to the Main Page</a><br><br>
+<br>
+    <h1>{{status}}</h1><br>
+    {{collectionname}}
+<!--<input type="button" name="btn_insert_coll" value = 'Insert a Collection'> -->
+
+{% endblock %}
