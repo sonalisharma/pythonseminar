@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1 style="text-align:center">Analyzing Crowdfunded projects</h1>
+    <hr>
+    <section id="introduction">
+    	<img id="wordle" src="static/img/cfsample.jpeg"  style ="height:150px;width:150px;"/>
+    	<div class ="info">
+    		<p>
+    		In the rise of decentralized and shared economy in US and other major economies it is quite interesting and important to understand how people behave, invest or donate in the projects on these platforms. We will also create a web-page where users will be able to view summary statistics , results of analysis and characteristics of various crowd funded technology based projects.
+    		</p>
+    	</div>
+    </section>
+    <section id="summary">
+    <form method="post" action="/" enctype=multipart/form-data>
+    	<div class ="left">
+    		<ul id="params">
+    			<p>Parameters</p>
+    			<input type="checkbox" name="parameters" value="duration"> Durations(days)<br>
+				<input type="checkbox" name="parameters" value="funders" > No. of Funders<br>
+				<input type="checkbox" name="parameters" value="sponsos" > No. of Sponsors<br>
+				<input type="checkbox" name="parameters" value="eta" > ETA<br>
+				<input type="checkbox" name="parameters" value="location" > Location<br>
+			</ul>
+    	</div>
+    	<div class ="right">
+            <h2 >Data Summary</h2>
+         <table width="40%" style="margin:left:30px;float:left">
+            <tr>
+              <td><span class="medium number">1841</span>campaigns</td>
+            </tr>
+            <tr>
+              <td><span class="medium number">75</span>countries</td>
+            </tr>
+            <tr>
+              <td><span class="medium number amount">$19,804,732</span>raised</td>
+            </tr>
+            <tr>
+               <td><span class="medium number ">14,606</span>perks provided</td>
+            </tr>
+        </table>
+        <table width="40%" style="margin:left:40px;">
+        <tr>
+            <td>
+                <img src="static/img/map.png"/>
+            </td>
+        </tr>
+    	</div>
+    </form>
+    </section>
+
+    <section id="stats" style="display:none">
+    	<h2>
+		    <label>Param1 </label> <input type="text" name="txt_param1" required>
+		    <label>Param2 </label> <input type="text" name="txt_param2" required>
+		    <label>Param3 </label> <input type="text" name="txt_param3" required>
+		    <label>Param4 </label> <input type="text" name="txt_param4" required>
+		    <label>Param5 </label> <input type="text" name="txt_param5" required>
+		</h2>
+
+
+    </section>
+
+
+{% endblock %}

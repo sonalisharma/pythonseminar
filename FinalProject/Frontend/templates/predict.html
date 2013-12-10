@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+ <section id="introduction">
+    	<div class ="predict_intro">
+    		<h1>Prediction</h1>
+    		<p>Enter the values in the following parameters to check if your project will be Successful, Moderately Sucessful or Unsuccessful</p>
+    	</div>
+ </section>
+ <div class="predict_left">
+ 	<p><b>Parameters</b></p>
+ 	 <table width="100%" style="margin:left:30px;float:left">
+            <tr>
+              <td>
+              	<label for="country">Country</label></td><td>
+              	<select name="countries">
+					{% for c in countries %}
+					<option>{{c}}</option>
+					{% endfor %}
+				</select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="no_of_funders">No.of funders</label></td><td><input type="number" name="no_of_funders"></td>
+            </tr>
+            <tr>
+              <td><label for="max_perk">Maximum perk amount($)</label></td><td><input type="number" name="max_perk"></td>
+            </tr>
+            <tr>
+              <td><label for="min_perk">Minimum Perk amount($)</label></td><td><input type="number" name="min_perk"></td>
+            </tr>
+            <tr>
+              <td><label for="total_perks">Total Perks</label></td><td><input type="number" name="total_perks"></td>
+            </tr>
+            <tr>
+              <td><label for="fb_like">FB likes</label></td><td><input type="number" name="fb_like"></td>
+            </tr>
+            <tr>
+
+              <td>
+              	<label for="type">Funding Type</label></td><td>
+              	<select name="type">
+					<option>Fixed Funding</option>
+					<option>flexible Funding</option>
+				</select>
+			  </td>
+			</tr>
+            </tr>  
+        </table>
+
+</div>
+<div class="predict_right">
+	<p> The prediction of ur model is</p>
+</div>
+
+
+{% endblock %}

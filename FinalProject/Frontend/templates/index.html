@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+    <h1>Analysing Crowd funding Platforms</h1>
+    <h3>(Data taken for technology prpojects Indigogo.com)</h3>
+</head>
+<div class ="maincontent">
+<a href="#" oOnClick="show_summary();">Show data summary</a>
+
+</div>
+
+    
+<!--<input type="button" name="btn_insert_coll" value = 'Insert a Collection'> -->
+<!--<div class="main_urls">
+<a href="{{ url_for('upload_file') }}">Insert a Collection</a>
+<br><br>
+<a href="{{ url_for('run_query') }}">Run a query</a>
+<br><br>
+</div> -->
+{% if not answer %}
+No, collections present!
+{% else %}
+<p> The following collections are present so far:<p>
+
+{% endif %}
+
+	{% for collection in answer %}
+		{% if collection[0]  %}
+			{{collection[0]}}<br>
+		{% else %}
+		{% endif %}
+
+	{% endfor %}
+{% endblock %}
