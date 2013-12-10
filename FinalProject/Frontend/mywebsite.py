@@ -48,7 +48,7 @@ class Projects(db.Model):
     def __repr__(self):
         return 'Yo, my name is %r' % self.name
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def summary():
     if request.method == 'POST':
         pass
@@ -61,15 +61,28 @@ def fetchdata():
 
 def getcountries():
     countries = list(DATA['County'].unique())
-    print countries
     return countries
 
-@app.route('/predict')
+def getresult():
+    return "Unsuccessful"
+
+@app.route('/predict', methods=['GET', 'POST'])
 def predict():
     countries = getcountries()
-    #users = getusers
-    return render_template('predict.html',countries=countries)
-
+    predict = None
+    if request.method == 'POST':
+        country = request.form["countries"]
+        no_of_funders = request.form["no_of_funders"]
+        max_perk = request.form["max_perk"]
+        min_perk = request.form["min_perk"]
+        total_perks = request.form["total_perks"]
+        fb_like = request.form["fb_like"]
+        fundtype = request.form["type"] 
+        print country,no_of_funders,max_perk,min_perk,total_perks,fb_like,fundtype
+        predict = getresult()
+        print predict
+        return render_template('predict.html',countries=countries,prediction=predict)
+    return render_template('predict.html',countries=countries,prediction=predict)
 
 
 if __name__ == "__main__":

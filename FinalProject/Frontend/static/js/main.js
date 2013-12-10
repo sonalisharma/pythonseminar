@@ -1,21 +1,28 @@
 $( document ).ready(function() {
-  
-  console.log("ready");
-$("#params input[type=checkbox]").click(function(){
-    if ($(this).attr("checked") == "checked"){
-    	alert($(this).attr("value"))
-    	$.ajax({
-		    type: 'POST',
-		    url: '../../data',
-		    crossDomain: true,
-		    data: '{"some":"json"}',
-		    dataType: 'json'
-		});
 
-    } else {
-      $(this + " input").attr("checked") = "";
-    }
- 
+  $("form").click(function() {
+    console.log("I am inside click");
+      someGlobalArray=[];
+      $('#category:checked').each(function() {
+          someGlobalArray.push($(this).val());
+      });
+      console.log(someGlobalArray);
+        var data = {
+      data: JSON.stringify({
+                        "value":someGlobalArray
+                  })
+   };
+$.ajax({
+   url:"/data",
+   type: 'POST',
+   data: data,
+  success: function(msg){
+    console.log("Got a reply back");
+              var myDiv = $('.answers'); // The place where you want to inser the template
+              myDiv.html("");
+              myDiv.html(msg);
+           }
+});
   });
 
 });

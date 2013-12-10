@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
- <section id="introduction">
+<section id="introduction">
     	<div class ="predict_intro">
     		<h1>Prediction</h1>
     		<p>Enter the values in the following parameters to check if your project will be Successful, Moderately Sucessful or Unsuccessful</p>
     	</div>
- </section>
- <div class="predict_left">
+</section>
+<div class="predict_left">
+ 	<form method="post" action="" enctype=multipart/form-data>
  	<p><b>Parameters</b></p>
  	 <table width="100%" style="margin:left:30px;float:left">
             <tr>
@@ -43,14 +44,25 @@
 					<option>flexible Funding</option>
 				</select>
 			  </td>
+			  <td>
+			  	<input type="submit" value="Predict"></input>
+			  </td>
 			</tr>
             </tr>  
         </table>
 
+    </form>
 </div>
-<div class="predict_right">
-	<p> The prediction of ur model is</p>
+{% if prediction %}
+<div class="predict_right" style="display:block">
+	<p>Based on the parameters you entered, or model predicts that your project will be {{prediction}}</p>
 </div>
+{% else %}
+<div class="predict_right" style="display:none">
+	<p>Based on the parameters you entered, or model predicts that your project will be {{prediction}}</p>
+</div>
+
+{% endif %}
 
 
 {% endblock %}
