@@ -5,25 +5,27 @@
 
 <div id ="analyse_plots">
 	<table width="40%" style="margin:left:30px;float:left">
-		<tr>
-	     <td><span class="small number">{{score.split(',')[0]}}</span>accuracy</td>
-	      <td><span class="small number">{{score.split(',')[1]}}</span>standard deviation</td>
+	<tr>
+	     <td><p>The data consisted of </td>
+	 </tr>
+	<tr>
+	     <td><span class="small analysenumber">{{score.split(',')[0]}}</span> accuracy</td>
+	 </tr>
+	 <tr>
+	      <td><span class="small analysenumber">{{score.split(',')[1]}}</span> standard deviation</td>
 	    </tr>
 	</table>
-	<table width="40%" style="margin:left:30px;float:left">
+	<table width="40%" style="margin:left:30px;">
 		<tr>
             <td>
-                <img src="static/img/map.png"/>
-            </td>
-            <td>
-                <img src="static/img/map.png"/>
+                <img style="zoom:0.7" src="static/img/confusionmatrix.png"/>
             </td>
         </tr>
 	</table>
 </div>
 
 <div class="analyse_left">
-	<p>Select parameters to see regression with Amount Raised</p>
+	<p style="border:1px;">Select parameters to see regression with Amount Raised</p>
 <h2>Parameters</h2>
 	<ul class="entries">
 	{% for f in features %}
@@ -32,7 +34,7 @@
 	</ul>
 
 </div>
-<div id="analyse_right">
+<div class="analyse_right">
 
 </div>
 </div>

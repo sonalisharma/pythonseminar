@@ -10,34 +10,35 @@
  	<form method="post" action="" enctype=multipart/form-data>
  	<p><b>Parameters</b></p>
  	 <table width="100%" style="margin:left:30px;float:left">
+ 	 	     <tr>
+              <td><label for="amount_goal">Amount to be Raised($)</label></td><td><input type="number" name="amount_goal"  placeholder="2000000" required></td>
+            </tr>
             <tr>
               <td><label for="count_comment">No.of Likely comments</label>
               </td>
-              <td><input type="number" name="count_comment" value="10"></td>
+              <td><input type="number" name="count_comment" placeholder="10" required></td>
             </tr>
-            <tr>
-              <td><label for="amount_goal">Amount to be Raised($)</label></td><td><input type="number" name="amount_goal"  value="2000000"></td>
-            </tr>
+
             <tr>
               <td><label for="count_funder">No. of Sponsors</label></td>
-              <td><input type="number" name="count_funder" value="2"></td>
+              <td><input type="number" name="count_funder" placeholder="2" required></td>
             </tr>
             <tr>
               <td><label for="count_photo">No.of Images</label></td>
-              <td><input type="number" name="count_photo" value="20"></td>
+              <td><input type="number" name="count_photo" placeholder="20" required></td>
             </tr>
             <tr>
               <td><label for="min_perk">Min Perk($)</label></td><td>
-              <input type="number" name="min_perk" value="100"></td>
+              <input type="number" name="min_perk" placeholder="100" required></td>
             </tr>
             <tr>
-              <td><label for="no_min_perk">No. of poeple likely to contrbute to Min Perk</label></td><td><input type="number" name="no_min_perk"  value="200"></td>
+              <td><label for="no_min_perk">No. of poeple likely to contribute to Min Perk</label></td><td><input type="number" name="no_min_perk"  placeholder="200"  required></td>
             </tr>
             <tr>
-              <td><label for="max_perk">Max Perk($)</label></td><td><input type="number" name="max_perk"  value="5000"></td>
+              <td><label for="max_perk">Max Perk($)</label></td><td><input type="number" name="max_perk"  placeholder="5000"required></td>
             </tr>
             <tr>
-              <td><label for="no_max_perk">No. of poeple likely to contrbute to Max Perk</label></td><td><input type="number" name="no_max_perk"  value="15"></td>
+              <td><label for="no_max_perk">No. of poeple likely to contribute to Max Perk</label></td><td><input type="number" name="no_max_perk"  placeholder="15"  required></td>
             </tr>
             <tr>
 		  <td>
@@ -50,11 +51,11 @@
 </div>
 {% if prediction %}
 <div class="predict_right" style="display:block">
-	<p>Based on the parameters you entered, or model predicts that your project will be {{prediction}}</p>
+	<p>Based on the parameters you entered, our model predicts that your project will be <br><span class="medium number amount">{{prediction}}</span></p>
 </div>
 {% else %}
 <div class="predict_right" style="display:none">
-	<p>Based on the parameters you entered, or model predicts that your project will be {{prediction}}</p>
+	Based on the parameters you entered, our model predicts that your project will be <span class="medium number amount">{{prediction}}</span>
 </div>
 
 {% endif %}
