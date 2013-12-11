@@ -11,44 +11,39 @@
  	<p><b>Parameters</b></p>
  	 <table width="100%" style="margin:left:30px;float:left">
             <tr>
-              <td>
-              	<label for="country">Country</label></td><td>
-              	<select name="countries">
-					{% for c in countries %}
-					<option>{{c}}</option>
-					{% endfor %}
-				</select>
+              <td><label for="count_comment">No.of Likely comments</label>
               </td>
+              <td><input type="number" name="count_comment" value="10"></td>
             </tr>
             <tr>
-              <td><label for="no_of_funders">No.of funders</label></td><td><input type="number" name="no_of_funders"></td>
+              <td><label for="amount_goal">Amount to be Raised($)</label></td><td><input type="number" name="amount_goal"  value="2000000"></td>
             </tr>
             <tr>
-              <td><label for="max_perk">Maximum perk amount($)</label></td><td><input type="number" name="max_perk"></td>
+              <td><label for="count_funder">No. of Sponsors</label></td>
+              <td><input type="number" name="count_funder" value="2"></td>
             </tr>
             <tr>
-              <td><label for="min_perk">Minimum Perk amount($)</label></td><td><input type="number" name="min_perk"></td>
+              <td><label for="count_photo">No.of Images</label></td>
+              <td><input type="number" name="count_photo" value="20"></td>
             </tr>
             <tr>
-              <td><label for="total_perks">Total Perks</label></td><td><input type="number" name="total_perks"></td>
+              <td><label for="min_perk">Min Perk($)</label></td><td>
+              <input type="number" name="min_perk" value="100"></td>
             </tr>
             <tr>
-              <td><label for="fb_like">FB likes</label></td><td><input type="number" name="fb_like"></td>
+              <td><label for="no_min_perk">No. of poeple likely to contrbute to Min Perk</label></td><td><input type="number" name="no_min_perk"  value="200"></td>
             </tr>
             <tr>
-
-              <td>
-              	<label for="type">Funding Type</label></td><td>
-              	<select name="type">
-					<option>Fixed Funding</option>
-					<option>flexible Funding</option>
-				</select>
-			  </td>
-			  <td>
-			  	<input type="submit" value="Predict"></input>
-			  </td>
+              <td><label for="max_perk">Max Perk($)</label></td><td><input type="number" name="max_perk"  value="5000"></td>
+            </tr>
+            <tr>
+              <td><label for="no_max_perk">No. of poeple likely to contrbute to Max Perk</label></td><td><input type="number" name="no_max_perk"  value="15"></td>
+            </tr>
+            <tr>
+		  <td>
+		  	<input type="submit" value="Predict"></input>
+		  </td>
 			</tr>
-            </tr>  
         </table>
 
     </form>

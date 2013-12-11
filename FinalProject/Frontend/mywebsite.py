@@ -13,8 +13,8 @@ from sklearn import preprocessing
 import json
 from sklearn import cross_validation
 from sklearn import linear_model
-clf = linear_model.LogisticRegression()
 from sklearn.cross_validation import cross_val_score
+import pickle
 
 FILENAME ="newdata_1200.csv"
 DATA = pd.read_csv("../Notebooks/Data/"+FILENAME,sep = "\t",header=0)
@@ -74,7 +74,8 @@ def print_cv_score_summary(model, xx, yy, cv):
 def analyse():
     clf = linear_model.LogisticRegression()
     score = print_cv_score_summary(clf,data_features.values,data_target,cv=cross_validation.KFold(len(data_target), 10))
-    features = data_features.columns
+    #features = data_features.columns
+    features = ["Count_comment","Count_funder", "Count_photo", "Mintotal", "Maxtotal", "Mediantotal"]
     return render_template('analyse.html',score=score,features=features)
 
 def setstatus(ratio):
@@ -99,34 +100,42 @@ def getcountries():
     countries = list(DATA['County'].unique())
     return countries
 
-def getresult():
-    return "Unsuccessful"
+def getresult(userinput):
+    pkl_file = open("classifier_new.p", 'rb')
+    clf = pickle.load(pkl_file)
+    X = np.array(userinput)
+    print X
+    X_scaled = preprocessing.scale(X)
+    preds = clf.predict(X_scaled)
+    print preds
+    if preds == 1:
+        status = "Successful"
+    if preds == 2:
+        status = "Moderately Successful"
+    if preds == 3:
+        status = "UnSuccessful"
+    return status
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
     countries = getcountries()
     predict = None
     if request.method == 'POST':
-        country = request.form["countries"]
-        no_of_funders = request.form["no_of_funders"]
-        max_perk = request.form["max_perk"]
+        comment_cnt = request.form["count_comment"]
+        amount_goal = request.form["amount_goal"]
+        funder_cnt = request.form["count_funder"]
+        photo_cnt = request.form["count_photo"]
         min_perk = request.form["min_perk"]
-        total_perks = request.form["total_perks"]
-        fb_like = request.form["fb_like"]
-        fundtype = request.form["type"] 
-        print country,no_of_funders,max_perk,min_perk,total_perks,fb_like,fundtype
-        predict = getresult()
+        max_perk = request.form["max_perk"]
+        no_min_perk = request.form["no_min_perk"]
+        no_max_perk = request.form["no_max_perk"]
+        user_input = [float(comment_cnt),float(amount_goal),float(funder_cnt),
+        float(photo_cnt),float(min_perk)*float(no_min_perk),float(max_perk)*float(no_max_perk)]
+        predict = getresult(user_input)
         print predict
         return render_template('predict.html',countries=countries,prediction=predict)
     return render_template('predict.html',countries=countries,prediction=predict)
 
-
 if __name__ == "__main__":
-    global name
-    global email
-    global radio
-    global colorbox
-    #db.drop_all()
-    #db.create_all()
     app.run()
 
