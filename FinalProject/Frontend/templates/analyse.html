@@ -1,15 +1,40 @@
 {% extends "layout.html" %}
 {% block content %}
 <h1>Our Model</h1>
-<p>Select parameters to see regression with Amount Raised</p>
-<div class="left_analyse">
-<h2>
-    <label>Param1 </label> <input type="text" name="txt_param1" required>
-    <label>Param2 </label> <input type="text" name="txt_param2" required>
-    <label>Param3 </label> <input type="text" name="txt_param3" required>
-    <label>Param4 </label> <input type="text" name="txt_param4" required>
-    <label>Param5 </label> <input type="text" name="txt_param5" required>
-</h2>
+<div id = "maincontent">
+
+<div id ="analyse_plots">
+	<table width="40%" style="margin:left:30px;float:left">
+		<tr>
+	     <td><span class="small number">{{score.split(',')[0]}}</span>accuracy</td>
+	      <td><span class="small number">{{score.split(',')[1]}}</span>standard deviation</td>
+	    </tr>
+	</table>
+	<table width="40%" style="margin:left:30px;float:left">
+		<tr>
+            <td>
+                <img src="static/img/map.png"/>
+            </td>
+            <td>
+                <img src="static/img/map.png"/>
+            </td>
+        </tr>
+	</table>
+</div>
+
+<div class="analyse_left">
+	<p>Select parameters to see regression with Amount Raised</p>
+<h2>Parameters</h2>
+	<ul class="entries">
+	{% for f in features %}
+	<input id="category" type="checkbox" name={{f}} value= {{f}}><label>{{f.replace("_"," ")}}</label> <br>
+	{% endfor %}
+	</ul>
+
+</div>
+<div id="analyse_right">
+
+</div>
 </div>
 
 {% endblock %}

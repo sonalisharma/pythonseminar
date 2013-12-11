@@ -11,9 +11,18 @@ import math
 from sklearn import neighbors
 from sklearn import preprocessing
 import json
+from sklearn import cross_validation
+from sklearn import linear_model
+clf = linear_model.LogisticRegression()
+from sklearn.cross_validation import cross_val_score
 
 FILENAME ="newdata_1200.csv"
 DATA = pd.read_csv("../Notebooks/Data/"+FILENAME,sep = "\t",header=0)
+DATA = DATA.fillna(0)
+data_features = pd.read_csv("../Notebooks/Finaldata/features.csv",sep = ",",header=0)
+
+data_target = pd.read_csv("../Notebooks/Finaldata/target.csv",sep = ",",header=0)
+print data_target
 
 app = Flask(__name__)
 
@@ -53,6 +62,33 @@ def summary():
     if request.method == 'POST':
         pass
     return render_template('main.html')
+
+def print_cv_score_summary(model, xx, yy, cv):
+    scores = cross_val_score(model, xx, yy, cv=cv, n_jobs=1)
+    print ("mean: {:3f}, stdev: {:3f}".format(
+        np.mean(scores), np.std(scores)))
+    return("{:3f},{:3f}".format(
+        np.mean(scores), np.std(scores)))
+
+@app.route("/analyse")
+def analyse():
+    clf = linear_model.LogisticRegression()
+    score = print_cv_score_summary(clf,data_features.values,data_target,cv=cross_validation.KFold(len(data_target), 10))
+    features = data_features.columns
+    return render_template('analyse.html',score=score,features=features)
+
+def setstatus(ratio):
+    if (ratio>=1):
+        return 1
+    if (ratio>=0.66 and ratio <1):
+        return 2
+    if (ratio<0.66):
+        return 3
+
+def getstatus(data):
+    data['status'] = data['Ratio'].apply(setstatus)
+    ratio = data['Ratio']
+    return ratio
 
 @app.route('/analysis')
 def fetchdata():
