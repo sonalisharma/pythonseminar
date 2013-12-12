@@ -3,16 +3,23 @@
     <h1 style="text-align:center">Analyzing Crowdfunded projects</h1>
     <hr>
     <section id="introduction">
-    	<img id="wordle" src="static/img/cfsample.jpeg"  style ="height:150px;width:150px;"/>
-    	<div class ="info">
+    	<img id="wordle" src="static/img/crowdfunding.jpg" style="float:left;"/>
+        <div class ="info">
     		<p>
-    		In the rise of decentralized and shared economy in US and other major economies it is quite interesting and important to understand how people behave, invest or donate in the projects on these platforms. We will also create a web-page where users will be able to view summary statistics , results of analysis and characteristics of various crowd funded technology based projects.
+    		The 2012 JOBS Act enabled both accredited and unaccredited investors to use the Web and social media to make investments in entrepreneurs and small and medium enterprises (SMEs). This was done in the hopes of creating a market that could provide funding to smaller entrepreneurial businesses, from an increased number of smaller debt and equity investments by less wealthy individuals.
+            According to a Berkeley Fung Institute study the size of the Crowd Funding market is estimated at the size of minimum 160Mn dollar in next couple of years.
+            This presentation is our initial results in process of investigation to understand the signals of success in pledge based crowd funding models. We are looking into the projects hosted by indiegogo.com in the entrepreneurial category. 
+            We deployed machine learning techniques on the dataset we are focussing on and identified important factors and somewhat succesfully can categorize the rate of success of the projects. We found the factors we found are consistent with previous and relevant researches done by various other researchers looking into the domain empirically. While other researchers have not yet explored the potential of computation, statistical machine learning to a great extent in this field, we are hoping to have an edge.
+            We are going to extend our analysis with more datasets, temporal analysis and inclusion of techniques such as NLP and Game-Theory based modeling!
     		</p>
     	</div>
     </section>
     <section id="summary">
     	<div class ="left">
-    	
+            <div class="nav">
+                <a href="{{ url_for('analyse') }}">Analysis</a><br>
+                <a href="{{ url_for('predict') }}">Prediction</a>
+            </div>
     	</div>
     	<div class ="right">
             <h2 >Data Summary</h2>

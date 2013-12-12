@@ -1,24 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Our Model</h1>
+<h1>Our Approach</h1><p style="float:right;margin-top:-35px;"><a href="{{ url_for('summary') }}">Main Page</a><br></p>
 <div id = "maincontent">
 
 <div id ="analyse_plots">
-	<table width="40%" style="margin:left:30px;float:left">
+	<p>For our analysis we have collected and recoded the collected data to create a set of 32 variables.</p>
+<p>In the initial analysis we were trying to predict the absolute money raised by the campaigns based on the features but it was ambitious and not accurate because of the high dimensionality of the data, outliers in each feature (e.g. Maximum Perk= 4Mn for a $5000 goal project) and the small size of the total population.</p> 
+<p>Therefore we decided to reduce the dimensionality by using regression models with penalty functions and used LARS and LASSO methods in cross-folds. </p>
+<p>In the next stage we tried to create a multi-level logistic regression based classification system in three classes for Successful, Moderately Successful and Unsuccessful.</p>
+
+	<table width="100%" style="margin:left:30px;float:left">
 	<tr>
-	     <td><p>The data consisted of </td>
+		<td>
+	     	<span class="small analysenumber"><b>{{score.split(',')[0]}}</b></span> accuracy, <span class="small analysenumber"><b>{{score.split(',')[1]}}</b></span> standard deviation
+	     </td>
 	 </tr>
-	<tr>
-	     <td><span class="small analysenumber">{{score.split(',')[0]}}</span> accuracy</td>
-	 </tr>
-	 <tr>
-	      <td><span class="small analysenumber">{{score.split(',')[1]}}</span> standard deviation</td>
-	    </tr>
 	</table>
-	<table width="40%" style="margin:left:30px;">
+	<h3>Plots</h3>
+	<br>
+	<table width="100%" style="margin:left:30px;">
 		<tr>
             <td>
-                <img style="zoom:0.7" src="static/img/confusionmatrix.png"/>
+                <img style="zoom:0.9" src="static/img/lassopath.png"/>
+            </td>
+            <td>
+                <img style="zoom:0.9" src="static/img/confusionmatrix.png"/>
             </td>
         </tr>
 	</table>
@@ -26,9 +32,11 @@
 
 <div class="analyse_left">
 	<p style="border:1px;">Select parameters to see regression with Amount Raised</p>
+	<p><input id="size" type="radio" name="size" value="small"> Small
+	   <input id="size" type="radio" name="size" value="large" checked>Large</p>
 <h2>Parameters</h2>
 	<ul class="entries">
-	{% for f in features %}
+	{% for f in features[:-9] %}
 	<input id="category" type="checkbox" name={{f}} value= {{f}}><label>{{f.replace("_"," ")}}</label> <br>
 	{% endfor %}
 	</ul>

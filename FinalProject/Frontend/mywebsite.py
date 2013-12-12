@@ -20,9 +20,9 @@ FILENAME ="newdata_1200.csv"
 DATA = pd.read_csv("../Notebooks/Data/"+FILENAME,sep = "\t",header=0)
 DATA = DATA.fillna(0)
 data_features = pd.read_csv("../Notebooks/Finaldata/features.csv",sep = ",",header=0)
-
 data_target = pd.read_csv("../Notebooks/Finaldata/target.csv",sep = ",",header=0)
-print data_target
+print len(data_target)
+print len(data_features)
 
 app = Flask(__name__)
 
@@ -32,30 +32,6 @@ eng = db.create_engine("sqlite:///crowdfunding.db")
 db.create_all()
 app.debug = True
 
-
-class Projects(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    status = db.Column(db.String(1500))
-    pin = db.Column(db.String(1500))
-    follow = db.Column(db.Integer)
-    matchpin = db.Column(db.String(1500))
-    expressinterest = db.Column(db.String(1500))
-    answer = db.Column(db.String(1500))
-    email = db.Column(db.String(1500))
-
-    def __init__(self, name, status,pin,follow,matchpin,expressinterest,answer,email):
-        self.name = name
-        self.status = status
-        self.pin = pin
-        self.follow = follow
-        self.matchpin = matchpin
-        self.expressinterest = expressinterest
-        self.answer = answer
-        self.email = email
-
-    def __repr__(self):
-        return 'Yo, my name is %r' % self.name
 
 @app.route("/", methods=['GET', 'POST'])
 def summary():
@@ -73,7 +49,7 @@ def print_cv_score_summary(model, xx, yy, cv):
 @app.route("/analyse")
 def analyse():
     clf = linear_model.LogisticRegression()
-    score = print_cv_score_summary(clf,data_features.values,data_target,cv=cross_validation.KFold(len(data_target), 10))
+    score = print_cv_score_summary(clf,data_features.values,data_target.values,cv=cross_validation.KFold(len(data_target), 10))
     features = data_features.columns
     print features
     #features = ["Count_comment","Count_funder", "Count_photo", "Mintotal", "Maxtotal", "Mediantotal"]
@@ -92,10 +68,6 @@ def getstatus(data):
     ratio = data['Ratio']
     return ratio
 
-@app.route('/analysis')
-def fetchdata():
-    #users = getusers
-    return render_template('makematch.html')
 
 def getcountries():
     countries = list(DATA['Country'].unique())
@@ -124,6 +96,7 @@ def gettitle(plotname):
     "Count_photo":["No. of photos uploaded",60], 
     "Amount_goal":["Amount to be raised",1000000] ,
     "Start_month": ["Project start month",12],
+    "End_month": ["Project end month",12],
     "Duration":["Duration of Project",150], 
     "Min_perk":["Amount of minimum perk($)",200], 
     "No_min_perk":["No. of people contributing to min perk",100], 
@@ -131,7 +104,7 @@ def gettitle(plotname):
     "No_max_perk":["No. of people contributing to max perk",50], 
     "Median_perk":["Amount of median perk($)",2000], 
     "No_med_perk":["No. of people contributing to median perk",100], 
-    "Tot_perk":["Total perks given",22], 
+    "Total_perk":["Total perks given",22], 
     "FB_like":["Total FB likes",3000], 
     "FB_talking":["Total FB shares",3000], 
     "Youtube_avg_duratio":["Youtube video duration",2000], 
@@ -141,7 +114,8 @@ def gettitle(plotname):
     "Maxtotal":["Total money raised by max perk",20000]}
     return plot.get(plotname)
 
-def drawplot(name):
+def drawplot(name,radio):
+    print radio
     g_data = gettitle(name)
     print "This is it"
     print g_data
@@ -150,7 +124,16 @@ def drawplot(name):
     xaxis = data_features[name]
     amount_raised = DATA['Amount_Raised']
     color = map(lambda x: cols[x],data_target['target'])
-    fig,ax1 = plt.subplots(figsize=(8,6))
+    print "=================="
+    print str(str(radio[0]))
+    print "=================="
+    if (str(str(radio[0]))=="small"):
+        print "small is here"
+        fig,ax1 = plt.subplots(figsize=(8,6))
+    else:
+        print "large is here"
+        fig,ax1 = plt.subplots(figsize=(12,10))
+
     ax1.scatter(xaxis,amount_raised,c = color, lw = 0.5)
     ax1.set_title(g_data[0])    
     ax1.set_xlabel(name)
@@ -162,6 +145,10 @@ def drawplot(name):
     line3 = plt.Line2D(range(1), range(1), color="white", marker='o',markersize=5, markerfacecolor="red")
     plt.legend((line1,line2,line3),('Succesful','Moderately Successful', 'Unsuccessful'),numpoints=1, loc=1)
     filepath = "static/img/Plots/"+name+".png"
+    try:
+        os.remove("static/img/Plots/"+name+".png")
+    except:
+        print "Did not file an existing file to delete"
     fig.savefig(filepath) 
     return  filepath
 
@@ -169,12 +156,16 @@ def drawplot(name):
 @app.route('/data', methods=['GET', 'POST'])
 def data():
     datajson = json.loads(request.form.get('data'))
+    print datajson
     vhtml = "<ul class=\"entries\">"
-    for data in datajson.values():
-        for d in data:
-            print "I am here this is "+d
-            filepath = drawplot(d)
-            vhtml =vhtml+"<li><img style=\"zoom: 0.5\" src=\""+filepath+"\"/></li>"
+    data = datajson['value']
+    print "#################"
+    print data
+    print "#################"
+    for d in data:
+        print "I am here this is "+d
+        filepath = drawplot(d,datajson['radio'])
+        vhtml =vhtml+"<li><img style=\"zoom: 0.5\" src=\""+filepath+"\"/></li>"
     vhtml = vhtml+"</ul>"
     return vhtml
 

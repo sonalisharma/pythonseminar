@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://127.0.0.1:5000/analyse -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Query your collection</title>
+        
+        <link rel="shortcut icon" href="http://127.0.0.1:5000/static/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="./Query your collection_files/style.css">
+        <script src="./Query your collection_files/jquery-1.10.1.min.js"></script>
+        <script src="./Query your collection_files/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="./Query your collection_files/main.js"></script>
+    </head>
+    <body style="">
+    	<div class="wrapper">
+        
+<h1>Our Approach</h1><p style="float:right;margin-top:-35px;"><a href="http://127.0.0.1:5000/">Main Page</a><br></p>
+<div id="maincontent">
+
+<div id="analyse_plots">
+	<p>For our analysis we have collected and recoded the collected data to create a set of 32 variables.</p>
+<p>In the initial analysis we were trying to predict the absolute money raised by the campaigns based on the features but it was ambitious and not accurate because of the high dimensionality of the data, outliers in each feature (e.g. Maximum Perk= 4Mn for a $5000 goal project) and the small size of the total population.</p> 
+<p>Therefore we decided to reduce the dimensionality by using regression models with penalty functions and used LARS and LASSO methods in cross-folds. </p>
+<p>In the next stage we tried to create a multi-level logistic regression based classification system in three classes for Successful, Moderately Successful and Unsuccessful.</p>
+
+	<table width="100%" style="margin:left:30px;float:left">
+	<tbody><tr>
+		<td>
+	     	<span class="small analysenumber"><b>0.835382</b></span> accuracy, <span class="small analysenumber"><b>0.069693</b></span> standard deviation
+	     </td>
+	 </tr>
+	</tbody></table>
+	<h3>Plots</h3>
+	<br>
+	<table width="100%" style="margin:left:30px;">
+		<tbody><tr>
+            <td>
+                <img style="zoom:0.9" src="./Query your collection_files/lassopath.png">
+            </td>
+            <td>
+                <img style="zoom:0.9" src="./Query your collection_files/confusionmatrix.png">
+            </td>
+        </tr>
+	</tbody></table>
+</div>
+
+<div class="analyse_left">
+	<p style="border:1px;">Select parameters to see regression with Amount Raised</p>
+	<p><input id="size" type="radio" name="size" value="small"> Small
+	   <input id="size" type="radio" name="size" value="large" checked="">Large</p>
+<h2>Parameters</h2>
+	<ul class="entries">
+	
+	<input id="category" type="checkbox" name="Count_update" value="Count_update"><label>Count update</label> <br>
+	
+	<input id="category" type="checkbox" name="Count_comment" value="Count_comment"><label>Count comment</label> <br>
+	
+	<input id="category" type="checkbox" name="Count_funder" value="Count_funder"><label>Count funder</label> <br>
+	
+	<input id="category" type="checkbox" name="Count_photo" value="Count_photo"><label>Count photo</label> <br>
+	
+	<input id="category" type="checkbox" name="Amount_goal" value="Amount_goal"><label>Amount goal</label> <br>
+	
+	<input id="category" type="checkbox" name="Start_month" value="Start_month"><label>Start month</label> <br>
+	
+	<input id="category" type="checkbox" name="End_month" value="End_month"><label>End month</label> <br>
+	
+	<input id="category" type="checkbox" name="Duration" value="Duration"><label>Duration</label> <br>
+	
+	<input id="category" type="checkbox" name="Min_perk" value="Min_perk"><label>Min perk</label> <br>
+	
+	<input id="category" type="checkbox" name="No_min_perk" value="No_min_perk"><label>No min perk</label> <br>
+	
+	<input id="category" type="checkbox" name="Max_perk" value="Max_perk"><label>Max perk</label> <br>
+	
+	<input id="category" type="checkbox" name="No_max_perk" value="No_max_perk"><label>No max perk</label> <br>
+	
+	<input id="category" type="checkbox" name="Median_perk" value="Median_perk"><label>Median perk</label> <br>
+	
+	<input id="category" type="checkbox" name="No_med_perk" value="No_med_perk"><label>No med perk</label> <br>
+	
+	<input id="category" type="checkbox" name="Total_perk" value="Total_perk"><label>Total perk</label> <br>
+	
+	<input id="category" type="checkbox" name="FB_like" value="FB_like"><label>FB like</label> <br>
+	
+	<input id="category" type="checkbox" name="FB_talking" value="FB_talking"><label>FB talking</label> <br>
+	
+	<input id="category" type="checkbox" name="Youtube_avg_duration" value="Youtube_avg_duration"><label>Youtube avg duration</label> <br>
+	
+	<input id="category" type="checkbox" name="Youtube_avg_view_count" value="Youtube_avg_view_count"><label>Youtube avg view count</label> <br>
+	
+	<input id="category" type="checkbox" name="Youtube_avg_rating" value="Youtube_avg_rating"><label>Youtube avg rating</label> <br>
+	
+	</ul>
+
+</div>
+<div class="analyse_right"><ul class="entries"><li><img style="zoom: 0.5" src="./Query your collection_files/Count_comment.png"></li><li><img style="zoom: 0.5" src="./Query your collection_files/Count_funder.png"></li><li><img style="zoom: 0.5" src="./Query your collection_files/Count_photo.png"></li><li><img style="zoom: 0.5" src="./Query your collection_files/Start_month.png"></li></ul></div>
+</div>
+
+
+        </div>
+    
+</body></html>
